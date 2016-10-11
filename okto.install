@@ -1,0 +1,4 @@
+<?php
+
+// Enable the admin theme.
+\Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
