@@ -42,3 +42,8 @@ dependencies:
   - tour
   - automated_cron
   - example_profile_module
+
+themes:
+  - seven
+  - bartik
+  - stark

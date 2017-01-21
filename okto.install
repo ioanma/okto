@@ -4,6 +4,9 @@
  * Install, update and uninstall functions for the okto install profile.
  */
 
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy\Entity\Term;
+
 /**
  * Implements hook_install().
  *
@@ -16,5 +19,24 @@ function okto_install() {
   include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
   standard_install();
   
-  // Can add code in here to make nodes, terms, etc.
+  // Example: create a new Taxonomy Vocabulary.
+  $vocabulary = Vocabulary::create(array(
+    'vid' => 'okto_example_vocabulary',
+    'name' => 'Okto Example Vocabulary',
+  ))->save();
+  $term = Term::create(array(
+    'parent' => array(),
+    'name' => 'example term',
+    'vid' => 'okto_example_vocabulary',
+  ))->save();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for install_configure_form().
+ *
+ * Allows the profile to alter the site configuration form.
+ */
+function okto_form_install_configure_form_alter(&$form, FormStateInterface $form_state) {
+  // Add a placeholder as example that one can choose an arbitrary site name.
+  $form['site_information']['site_name']['#attributes']['placeholder'] = t('Okto site name');
 }
