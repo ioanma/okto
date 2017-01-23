@@ -4,9 +4,6 @@
  * Install, update and uninstall functions for the okto install profile.
  */
 
-use Drupal\taxonomy\Entity\Vocabulary;
-use Drupal\taxonomy\Entity\Term;
-
 /**
  * Implements hook_install().
  *
@@ -18,17 +15,6 @@ function okto_install() {
   // First, do everything in standard profile.
   include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
   standard_install();
-  
-  // Example: create a new Taxonomy Vocabulary.
-  $vocabulary = Vocabulary::create(array(
-    'vid' => 'okto_example_vocabulary',
-    'name' => 'Okto Example Vocabulary',
-  ))->save();
-  $term = Term::create(array(
-    'parent' => array(),
-    'name' => 'example term',
-    'vid' => 'okto_example_vocabulary',
-  ))->save();
 }
 
 /**
@@ -45,9 +31,6 @@ function okto_form_install_configure_form_alter(&$form, FormStateInterface $form
   $form['regional_settings']['site_default_country']['#default_value'] = 'UK';
   $form['regional_settings']['date_default_timezone']['#default_value'] = 'Europe/London';
   
-  // Add a placeholder as example that one can choose an arbitrary site name.
+  // An arbitrary site name.
   $form['site_information']['site_name']['#attributes']['placeholder'] = t('Okto site name');
 }
-
-// Enable the admin theme.
-\Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
