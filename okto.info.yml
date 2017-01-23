@@ -11,6 +11,7 @@ dependencies:
   - history
   - block
   - breakpoint
+  - ckeditor
   - color
   - config
   - comment
@@ -21,7 +22,6 @@ dependencies:
   - block_content
   - quickedit
   - editor
-  - ckeditor
   - help
   - image
   - menu_ui
@@ -41,9 +41,7 @@ dependencies:
   - views_ui
   - tour
   - automated_cron
-  - example_profile_module
 
 themes:
-  - seven
   - bartik
-  - stark
+  - seven
